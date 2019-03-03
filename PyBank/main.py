@@ -43,7 +43,7 @@ print(f"Greatest Decrease in Profits: {BigDecDate} (${round(BigDec, 2)})")
 with open("Financial_Analysis.txt","w") as txtfile:
     txtfile.write("Financial Analysis\n")
     txtfile.write("----------------------------\n")
-    txtfile.write(f"Months: {Months}")
+    txtfile.write(f"Months: {Months}\n")
     txtfile.write(f"Total Profits: ${round(TotalProfits, 2)}\n")
     txtfile.write(f"Average Change: ${round(TotaledChanges/(Months - 1), 2)}\n")
     txtfile.write(f"Greatest Increase in Profits: {BigIncDate} (${round(BigInc, 2)})\n")
