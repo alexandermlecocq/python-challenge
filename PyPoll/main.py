@@ -22,7 +22,7 @@ print("-------------------------")
 print(f"Total Votes: {VoteCount}")
 print("-------------------------")
 for n in range(len(Candidates)):
-    print(f"{Candidates[n]}: {round((100*CandidateVotes[n]/VoteCount), 3)}% ({CandidateVotes[n]})")
+    print(f"{Candidates[n]}: {(100*CandidateVotes[n]/VoteCount):.3f}% ({CandidateVotes[n]})")
     if CandidateVotes[n] > WinnerVotes:
         WinnerName = Candidates[n]
         WinnerVotes = CandidateVotes[n]
@@ -36,7 +36,7 @@ with open("Election_Results.txt","w") as txtfile:
     txtfile.write(f"Total Votes: {VoteCount}\n")
     txtfile.write("-------------------------\n")
     for n in range(len(Candidates)):
-        txtfile.write(f"{Candidates[n]}: {round((100*CandidateVotes[n]/VoteCount), 3)}% ({CandidateVotes[n]})\n")
+        txtfile.write(f"{Candidates[n]}: {(100*CandidateVotes[n]/VoteCount):.3f}% ({CandidateVotes[n]})\n")
         if CandidateVotes[n] > WinnerVotes:
             WinnerName = Candidates[n]
             WinnerVotes = CandidateVotes[n]
