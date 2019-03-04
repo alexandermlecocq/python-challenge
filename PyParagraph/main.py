@@ -12,7 +12,7 @@ with open("Paragraph.txt","r") as txtfile:
 sentences = re.split("(?<=[.!?]) +", paragraph)
 
 for currentsentence in sentences:
-    words = re.split(" ", currentsentence)
+    words = re.split("\s+", currentsentence)
     SentenceCount += 1
     for currentword in words:
         WordCount += 1
