@@ -54,44 +54,36 @@ us_state_abbrev = {
     'Wyoming': 'WY',
 }
 
-IDs = []
-FullNames = []
-DoBs = []
-SSNs = []
-States = []
+
 PlaceHolder = []
+IDs = ["ID"]
 FirstNames = ["First Name"]
 LastNames = ["Last Name"]
 ConvertedDates = ["DOB"]
 ConvertedSSNs = ["SSN"]
 ConvertedStates = ["State"]
 
-with open("employee_data.csv", newline='') as csvfile:
+with open("../Resources/employee_data.csv", newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-    #next(csvreader, None)
+    next(csvreader, None)
     for row in csvreader:
         IDs.append(row[0])
-        FullNames.append(row[1])
-        DoBs.append(row[2])
-        SSNs.append(row[3])
-        States.append(row[4])
 
+        PlaceHolder = re.split(" ", row[1])
+        FirstNames.append(PlaceHolder[0])
+        LastNames.append(PlaceHolder[1])
+        PlaceHolder.clear()
 
-for n in range(1, len(IDs)):
-    PlaceHolder = re.split(" ", FullNames[n])
-    FirstNames.append(PlaceHolder[0])
-    LastNames.append(PlaceHolder[1])
-    PlaceHolder.clear()
+        PlaceHolder = re.split("-", row[2])
+        ConvertedDates.append(f"{PlaceHolder[1]}/{PlaceHolder[2]}/{PlaceHolder[0]}")
+        PlaceHolder.clear()
 
-    PlaceHolder = re.split("-", DoBs[n])
-    ConvertedDates.append(f"{PlaceHolder[1]}/{PlaceHolder[2]}/{PlaceHolder[0]}")
-    PlaceHolder.clear()
+        PlaceHolder = re.split("-", row[3])
+        ConvertedSSNs.append(f"***-**-{PlaceHolder[2]}")
+        PlaceHolder.clear()
 
-    PlaceHolder = re.split("-", SSNs[n])
-    ConvertedSSNs.append(f"***-**-{PlaceHolder[2]}")
-    PlaceHolder.clear()
+        ConvertedStates.append(us_state_abbrev[row[4]])
 
-    ConvertedStates.append(us_state_abbrev[States[n]])
 
     #print(", ".join(IDs[n], FirstNames[n], LastNames[n], ConvertedDates[n]))
 
